@@ -123,7 +123,7 @@ class UserController extends Controller
     {
         return view('user.delete', compact('user'));
     }
-    
+
     /**
      * Destroy the given user.
      *

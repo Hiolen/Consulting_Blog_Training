@@ -69,14 +69,14 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                                                     document.getElementById('logout-form').submit();">
+                            Logout
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
+                            {{ csrf_field() }}
                         </form>
                     @endauth
                 </div>

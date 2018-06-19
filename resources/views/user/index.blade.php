@@ -8,6 +8,8 @@
             @include('user.partials.sidebar')
 
             <div class="col-xs-12 col-sm-9">
+                <h1>User Listing</h1>
+
                 <!-- Flash Session -->
                 @if(Session::has('flash_message'))
                     <div class="alert alert-success">

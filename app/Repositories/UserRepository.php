@@ -6,16 +6,16 @@ use App\User;
 
 class UserRepository
 {
-    private $model;
+    private $userModel;
 
     /**
      * UserRepository constructor.
      *
-     * @param User $model
+     * @param User $userModel
      */
-    public function __construct(User $model)
+    public function __construct(User $userModel)
     {
-        $this->model = $model;
+        $this->userModel = $userModel;
     }
 
     /**
@@ -24,6 +24,6 @@ class UserRepository
      * @return Collection
      */
     public function findAllUser() {
-        return $this->model->latest()->paginate(10);
+        return $this->userModel->latest()->paginate(10);
     }
 }

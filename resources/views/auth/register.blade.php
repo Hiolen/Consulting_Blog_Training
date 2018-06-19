@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Register</div>
 
-                    <div class="card-body">
+                    <div class="panel-body">
                         <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                            @csrf
+                            {{ csrf_field() }}
 
                             <div class="form-group row">
                                 <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
