@@ -35,7 +35,7 @@
                         @foreach($categories as $category)
                             <tr>
                                 <td>{{ $category->name }}</td>
-                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->user->username }}</td>
                                 <td>{{ $category->created_at->toFormattedDateString()}}</td>
                                 <td>
                                     <a href="{{ route('category.edit', ['id' => $category->id]) }}" class="btn btn-info btn-sm">Edit</a>
