@@ -56,10 +56,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'username' 		=> 'required|string|unique:users',
-            'first_name' 	=> 'required|max:255',
-            'last_name' 	=> 'required|max:255',
-            'password'      => 'required|confirmed|min:5'
+            'username' 	 g => 'required|string|unique:users',
+            'first_name' => 'required|max:255',
+            'last_name'  => 'required|max:255',
+            'password'   => 'required|confirmed|min:5'
         ]);
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
@@ -96,10 +96,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->validate($request, [
-            'username' 		=> 'required|string',
-            'first_name' 	=> 'required|max:255',
-            'last_name' 	=> 'required|max:255',
-            'password'      => 'required|confirmed|min:5'
+            'username' 	 => 'required|string',
+            'first_name' => 'required|max:255',
+            'last_name'  => 'required|max:255',
+            'password'   => 'required|confirmed|min:5'
         ]);
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
