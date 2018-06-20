@@ -5,10 +5,10 @@
 
         <div class="row row-offcanvas row-offcanvas-right">
 
-            @include('user.partials.sidebar')
+            @include('common.sidebar')
 
             <div class="col-xs-12 col-sm-9">
-                <form method="POST" action="{{ route('user.store') }}" aria-label="{{ __('Register') }}">
+                <form method="POST" action="{{ route('user.store') }}" aria-label="{{ __('Register') }}" class="form-horizontal">
                     {{ csrf_field() }}
 
                     <div class="form-group row">

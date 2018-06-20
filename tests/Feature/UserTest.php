@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use function PHPSTORM_META\type;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use Session;
 use App\User;
@@ -71,19 +69,20 @@ class UserTest extends TestCase
         $username   = 'test';
         $first_name = 'test';
         $last_name  = 'test';
-        $role       = 0;
+        $role       = 1;
 
         $this->login()
             ->visit('/user/create')
             ->type($username, 'username')
             ->type($first_name, 'first_name')
             ->type($last_name, 'last_name')
+            ->type($role, 'role')
             ->press('Add User')
             ->seeInDatabase('users', [
-                'username'      => $username,
-                'first_name'    => $first_name,
-                'last_name'     => $last_name,
-                'role'      => $role,
+                'username'   => $username,
+                'first_name' => $first_name,
+                'last_name'  => $last_name,
+                'role'       => $role,
             ]);
     }
 
@@ -92,7 +91,7 @@ class UserTest extends TestCase
         $username   = 'test';
         $first_name = 'test';
         $last_name  = 'test';
-        $role       = 0;
+        $role       = 1;
         $password   = bcrypt('secret!');
 
         $this->login()
@@ -102,7 +101,13 @@ class UserTest extends TestCase
             ->type($last_name, 'last_name')
             ->type($role, 'role')
             ->type($password, 'password')
-            ->press('Edit User');
+            ->press('Edit User')
+            ->seeInDatabase('users', [
+                'username'   => $username,
+                'first_name' => $first_name,
+                'last_name'  => $last_name,
+                'role'       => $role,
+            ]);
     }
 
     public function testDelete()
@@ -113,7 +118,7 @@ class UserTest extends TestCase
         $user = $user->find(1)->first();
         $this->actingAs($user);
         $this->seeInDatabase('users', ['deleted_at' => null, 'id' => 1]);
-        $response = $this->call('POST', 'user/1/destroy', ['_token' => csrf_token()]);
+        $response = $this->call('DELETE', 'user/1');
         $this->assertEquals(302, $response->getStatusCode());
     }
 }

@@ -8,7 +8,7 @@
             @include('common.sidebar')
 
             <div class="col-xs-12 col-sm-9">
-                <h1>User Listing</h1>
+                <h1>Category Listing</h1>
 
                 <!-- Flash Session -->
                 @if(Session::has('flash_message'))
@@ -23,35 +23,32 @@
                     </div>
                 @endif
 
-                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">Create User</a>
+                <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary">Create Category</a>
                 <div class="table-responsive">
                     <table class="table">
                         <tr>
-                            <th>Username</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Role</th>
+                            <th>Name</th>
+                            <th>Author</th>
                             <th>Date Created</th>
                             <th>Actions</th>
                         </tr>
-                        @foreach($users as $user)
+                        @foreach($categories as $category)
                             <tr>
-                                <td>{{ $user->username }}</td>
-                                <td>{{ $user->first_name}}</td>
-                                <td>{{ $user->last_name }}</td>
-                                <td>{{ ($user->role == 0) ? 'User' : 'Admin'}}</td>
-                                <td>{{ $user->created_at->toFormattedDateString()}}</td>
+                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->created_at->toFormattedDateString()}}</td>
                                 <td>
-                                    <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-info btn-sm">Edit</a>
-                                    <a href="{{ route('userDelete', ['id' => $user->id]) }}" class="btn btn-danger btn-sm {{ (Auth::user()->id == $user->id) ? 'disabled' : ' ' }}">Delete</a>
+                                    <a href="{{ route('category.edit', ['id' => $category->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="{{ route('categoryDelete', ['id' => $category->id]) }}" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
 
-                    {{ $users->links() }}
+                    {{ $categories->links() }}
                 </div> <!-- .table-responsive -->
             </div><!--/.col-xs-12.col-sm-9-->
+
         </div><!--/row-->
 
         <hr>

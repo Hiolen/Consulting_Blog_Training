@@ -14,5 +14,8 @@ Route::get('/', ['as' => 'index', 'uses' => 'PageController@index']);
 Route::resource('user', 'UserController');
 Route::get('/user/{user}/destroy', ['as' => 'userDelete', 'uses' => 'UserController@delete']);
 
+Route::resource('category', 'CategoryController');
+Route::get('/category/{category}/destroy', ['as' => 'categoryDelete', 'uses' => 'CategoryController@delete']);
+
 
 Auth::routes();

@@ -49,4 +49,12 @@ class User extends Authenticatable
     {
         return $this->role;
     }
+
+    /**
+     * Get the categories for the user.
+     */
+    public function categories()
+    {
+        return $this->hasMany('App\article_category');
+    }
 }
