@@ -33,4 +33,12 @@ class Category extends Model
     {
         return $this->belongsTo('App\User', 'updated_user_id');
     }
+
+    /**
+     * Get the articles for the category.
+     */
+    public function articles()
+    {
+        return $this->hasMany('App\Articles', 'article_category_id');
+    }
 }
