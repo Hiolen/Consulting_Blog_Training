@@ -19,11 +19,11 @@ class UserTest extends TestCase
      */
     public function testUserRoutes()
     {
-//        $this->login();
-//        $this->assertEquals(200, $this->call('GET', 'user')->getStatusCode());
-//        $this->assertEquals(200, $this->call('GET', 'user/create')->getStatusCode());
-//        $this->assertEquals(200, $this->call('GET', 'user/1/edit')->getStatusCode());
-//        $this->assertEquals(200, $this->call('GET', 'user/1/destroy')->getStatusCode());
+        $this->login();
+        $this->assertEquals(200, $this->call('GET', 'user')->getStatusCode());
+        $this->assertEquals(200, $this->call('GET', 'user/create')->getStatusCode());
+        $this->assertEquals(200, $this->call('GET', 'user/1/edit')->getStatusCode());
+        $this->assertEquals(200, $this->call('GET', 'user/1/destroy')->getStatusCode());
     }
 
     public function testUsernameValidation()

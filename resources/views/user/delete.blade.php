@@ -9,9 +9,10 @@
 
             <div class="col-xs-12 col-sm-9">
                 <form id="deleteForm" class="form-horizontal" method="post"
-                      action="@if (isset($user)){{ route('userDestroy', ['id' => $user->id]) }}@endif">
+                      action="@if (isset($user)){{ route('user.destroy', ['id' => $user->id]) }}@endif">
 
-                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                    {{ csrf_field() }}
+                    {{method_field('DELETE')}}
                     <input type="hidden" name="id" value="{{ $user->id }}" />
                     <div class="form-group">
                         <div class="controls">
@@ -19,7 +20,7 @@
                             <button type="submit" class="btn btn-sm btn-danger">
                                 Delete User
                             </button>
-                            <a href="{{ route('userIndex') }}" class="btn btn-warning btn-sm">Cancel</a>
+                            <a href="{{ route('user.index') }}" class="btn btn-warning btn-sm">Cancel</a>
 
                         </div>
                     </div>

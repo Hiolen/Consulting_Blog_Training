@@ -8,7 +8,7 @@
             @include('user.partials.sidebar')
 
             <div class="col-xs-12 col-sm-9">
-                <form method="POST" action="{{ route('userStore') }}" aria-label="{{ __('Register') }}">
+                <form method="POST" action="{{ route('user.store') }}" aria-label="{{ __('Register') }}">
                     {{ csrf_field() }}
 
                     <div class="form-group row">

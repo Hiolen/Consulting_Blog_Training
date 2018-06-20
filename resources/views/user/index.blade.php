@@ -23,7 +23,7 @@
                     </div>
                 @endif
 
-                <a href="{{ route('userCreate') }}" class="btn btn-sm btn-primary">Create User</a>
+                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">Create User</a>
                 <div class="table-responsive">
                     <table class="table">
                         <tr>
@@ -42,7 +42,7 @@
                                 <td>{{ ($user->role == 0) ? 'User' : 'Admin'}}</td>
                                 <td>{{ $user->created_at->toFormattedDateString()}}</td>
                                 <td>
-                                    <a href="{{ route('userEdit', ['id' => $user->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-info btn-sm">Edit</a>
                                     <a href="{{ route('userDelete', ['id' => $user->id]) }}" class="btn btn-danger btn-sm {{ (Auth::user()->id == $user->id) ? 'disabled' : ' ' }}">Delete</a>
                                 </td>
                             </tr>

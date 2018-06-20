@@ -27,6 +27,7 @@ class UserController extends Controller
     public function __construct(UserRepository $userRepository)
     {
         $this->middleware('auth');
+        $this->middleware('admin');
         $this->userRepository = $userRepository;
     }
 
@@ -65,7 +66,7 @@ class UserController extends Controller
         try {
             $user->save();
             Session::flash('flash_message', 'User added successfully.');
-            return redirect()->route('userIndex');
+            return redirect()->route('user.index');
         } catch (Exception $e) {
             Log::error($e->getMessage());
             Session::flash('flash_message_error', $e->getMessage());
@@ -105,7 +106,7 @@ class UserController extends Controller
         try {
             $user->save();
             Session::flash('flash_message', 'User updated successfully.');
-            return redirect()->route('userIndex');
+            return redirect()->route('user.index');
         } catch (Exception $e) {
             Log::error($e->getMessage());
             Session::flash('flash_message_error', $e->getMessage());
@@ -135,7 +136,7 @@ class UserController extends Controller
         try{
             $user->delete();
             Session::flash('flash_message', 'User deleted successfully.');
-            return redirect()->route('userIndex');
+            return redirect()->route('user.index');
         } catch (Exception $e) {
             Log::error($e->getMessage());
             Session::flash('flash_message_error', $e->getMessage());

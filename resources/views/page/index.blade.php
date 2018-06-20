@@ -89,7 +89,7 @@
 
                 <div class="links">
                     @auth
-                        <a href="{{ route('userIndex') }}">Dashboard</a>
+                        <a href="{{ route('user.index') }}">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>

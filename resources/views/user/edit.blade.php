@@ -8,8 +8,10 @@
             @include('user.partials.sidebar')
 
             <div class="col-xs-12 col-sm-9">
-                <form method="POST" action="{{ route('userUpdate', ['id' => $user->id]) }}" aria-label="{{ __('Register') }}">
+                <form method="POST" action="{{ route('user.update', ['id' => $user->id]) }}" aria-label="{{ __('Register') }}">
                     {{ csrf_field() }}
+
+                    {{ method_field('PATCH') }}
 
                     <div class="form-group row">
                         <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
