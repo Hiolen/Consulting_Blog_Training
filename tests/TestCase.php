@@ -4,7 +4,6 @@ namespace Tests;
 
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 use App\User;
-//use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -15,12 +14,12 @@ abstract class TestCase extends BaseTestCase
     public function login()
     {
         $user = new User([
-            'id' => 1,
-            'username' => 'test',
+            'id'         => 1,
+            'username'   => 'test',
             'first_name' => 'test',
-            'last_name' => 'test',
-            'password' => bcrypt('secret'),
-            'role'  => 1
+            'last_name'  => 'test',
+            'password'   => bcrypt('secret'),
+            'role'       => 1
         ]);
 
         $this->actingAs($user);

@@ -51,11 +51,7 @@
 
         </div><!--/row-->
 
-        <hr>
-
-        <footer>
-            <p>&copy; 2016 Company, Inc.</p>
-        </footer>
+        @include('common.footer')
 
     </div><!--/.container-->
 
