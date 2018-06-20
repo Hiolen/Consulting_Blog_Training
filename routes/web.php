@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +9,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', ['as' => 'index', 'uses' => 'PageController@index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('user', 'UserController');
+Route::get('/user/{user}/destroy', ['as' => 'userDelete', 'uses' => 'UserController@delete']);
+
+
+Auth::routes();
