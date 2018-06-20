@@ -5,10 +5,10 @@
 
         <div class="row row-offcanvas row-offcanvas-right">
 
-            @include('user.partials.sidebar')
+            @include('common.sidebar')
 
             <div class="col-xs-12 col-sm-9">
-                <h1>User Listing</h1>
+                <h1>Article Listing</h1>
 
                 <!-- Flash Session -->
                 @if(Session::has('flash_message'))
@@ -23,36 +23,38 @@
                     </div>
                 @endif
 
-                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">Create User</a>
+                <a href="{{ route('article.create') }}" class="btn btn-sm btn-primary">Create Article</a>
                 <div class="table-responsive">
                     <table class="table">
                         <tr>
-                            <th>Username</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Role</th>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Category</th>
+                            <th>Author</th>
                             <th>Date Created</th>
                             <th>Actions</th>
                         </tr>
-                        @foreach($users as $user)
+                        @foreach($articles as $article)
                             <tr>
-                                <td>{{ $user->username }}</td>
-                                <td>{{ $user->first_name}}</td>
-                                <td>{{ $user->last_name }}</td>
-                                <td>{{ ($user->role == 0) ? 'User' : 'Admin'}}</td>
-                                <td>{{ $user->created_at->toFormattedDateString()}}</td>
+                                <td>{{ $article->title }}</td>
+                                <td>{{ $article->image_path }}</td>
+                                <td>{{ $article->category->name }}</td>
+                                <td>{{ $article->user->username }}</td>
+                                <td>{{ $article->created_at->toFormattedDateString()}}</td>
                                 <td>
-                                    <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-info btn-sm">Edit</a>
-                                    <a href="{{ route('userDelete', ['id' => $user->id]) }}" class="btn btn-danger btn-sm {{ (Auth::user()->id == $user->id) ? 'disabled' : ' ' }}">Delete</a>
+                                    <a href="{{ route('article.edit', ['id' => $article->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="{{ route('articleDelete', ['id' => $article->id]) }}" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
 
-                    {{ $users->links() }}
+                    {{ $articles->links() }}
                 </div> <!-- .table-responsive -->
             </div><!--/.col-xs-12.col-sm-9-->
         </div><!--/row-->
+
+        @include('common.footer')
 
     </div><!--/.container-->
 

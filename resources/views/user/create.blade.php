@@ -97,12 +97,6 @@
             </div><!--/.col-xs-12.col-sm-9-->
         </div><!--/row-->
 
-        <hr>
-
-        <footer>
-            <p>&copy; 2016 Company, Inc.</p>
-        </footer>
-
     </div><!--/.container-->
 
 @endsection
