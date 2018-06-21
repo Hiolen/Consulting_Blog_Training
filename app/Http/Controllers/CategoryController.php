@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Repositories\CategoryRepository;
 use App\Category;
@@ -53,12 +54,8 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-
-        $this->validate($request, [
-            'name'  => 'required|string|unique:categories',
-        ]);
         $category = new Category($request->all());
         try {
             $category->save();
@@ -85,16 +82,13 @@ class CategoryController extends Controller
     /**
      * Update Category.
      *
-     * @param Request $request
+     * @param CategoryRequest $request
      * @param  Category  $category
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        $this->validate($request, [
-            'name'  => 'required|string|unique:categories',
-        ]);
         $category->fill($request->all());
         try {
             $category->save();
