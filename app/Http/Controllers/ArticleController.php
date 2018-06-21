@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Http\Requests\Admin\ArticleRequest;
 use Illuminate\Http\Request;
 use App\Repositories\ArticleRepository;
 use Exception;
@@ -51,23 +52,85 @@ class ArticleController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param ArticleRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $this->validate($request, [
-            'title' 	 => 'required|string|max:255',
-            'image_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         $article = new Article($request->all());
-        $article->saveFile($request->file('image_path'));
-        dd('hello world');
+        $article->slug = $article->title;
+
         try {
             $article->save();
             Session::flash('flash_message', 'Article added successfully.');
+            return redirect()->route('article.index');
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            Session::flash('flash_message_error', $e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Edit view of Article.
+     *
+     * @param Article $article
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Article $article)
+    {
+        $categories = $this->articleRepository->getAllCategoryName();
+
+        return view('article.edit', compact('article', 'categories'));
+    }
+
+    /**
+     * Update Article.
+     *
+     * @param ArticleRequest $request
+     * @param  Article  $article
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(ArticleRequest $request, Article $article)
+    {
+        $article->fill($request->all());
+        $article->slug = $article->title;
+
+        try {
+            $article->save();
+            Session::flash('flash_message', 'Article updated successfully.');
+            return redirect()->route('article.index');
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            Session::flash('flash_message_error', $e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Get Article to delete.
+     *
+     * @param Article $article
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Article $article)
+    {
+        return view('article.delete', compact('article'));
+    }
+
+    /**
+     * Destroy the given article.
+     *
+     * @param Article $article
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Article $article)
+    {
+        try{
+            $article->delete();
+            Session::flash('flash_message', 'Article deleted successfully.');
             return redirect()->route('article.index');
         } catch (Exception $e) {
             Log::error($e->getMessage());

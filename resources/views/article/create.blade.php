@@ -13,10 +13,10 @@
 
                     <input type="hidden" name="updated_user_id" value="{{ Auth::id() }}">
 
-                    <div class="form-group">
-                        <label for="title" class="col-md-4 control-label">{{ __('title') }}</label>
+                    <div class="form-group row">
+                        <label for="title" class="col-md-2 control-label">{{ __('title') }}</label>
 
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus>
 
                             @if ($errors->has('title'))
@@ -27,11 +27,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="contents" class="col-md-4 control-label">{{ __('contents') }}</label>
+                    <div class="form-group row">
+                        <label for="contents" class="col-md-2 control-label">{{ __('contents') }}</label>
 
-                        <div class="col-md-6">
-                            <textarea name="contents" id="contents" class="form-control{{ $errors->has('contents') ? ' is-invalid' : '' }}" cols="30" rows="5" autofocus></textarea>
+                        <div class="col-md-10">
+                            <textarea name="contents" id="editor1" class="form-control{{ $errors->has('contents') ? ' is-invalid' : '' }}" cols="30" rows="5" autofocus>{{ old('contents') }}</textarea>
 
                             @if ($errors->has('contents'))
                                 <span class="invalid-feedback" role="alert">
@@ -41,10 +41,10 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="title" class="col-md-4 control-label">{{ __('title') }}</label>
+                    <div class="form-group row">
+                        <label for="title" class="col-md-2 control-label">{{ __('Category') }}</label>
 
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <select name="article_category_id" id="article_category_id">
                                 @foreach ($categories as $value => $key)
                                     <option value="{{ $key }}">{{ $value }}</option>
@@ -59,22 +59,18 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="image" class="col-md-4 control-label">{{ __('image') }}</label>
+                    <div class="form-group row">
+                        <label for="image" class="col-md-2 control-label">{{ __('image') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="image" type="file" class="{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image_path" value="{{ old('image') }}" required autofocus>
-
-                            @if ($errors->has('image'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                            @endif
+                        <div class="col-md-8">
+                            <input type="hidden" name="image_path" id="image_path" />
+                            <a href="#" class="btn btn-info" id="ckFinder-popUp">Select file</a> &nbsp;&nbsp;
+                            <span id="image_path_text"></span>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-md-6 offset-md-4">
+                    <div class="form-group row">
+                        <div class="col-md-6">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Add Article') }}
                             </button>
@@ -83,8 +79,6 @@
                 </form>
             </div><!--/.col-xs-12.col-sm-9-->
         </div><!--/row-->
-
-        @include('common.footer')
 
     </div><!--/.container-->
 

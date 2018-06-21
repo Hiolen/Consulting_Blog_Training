@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\UserRequest;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use App\User;
@@ -49,18 +50,12 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UserRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $this->validate($request, [
-            'username' 	 => 'required|string|unique:users',
-            'first_name' => 'required|max:255',
-            'last_name'  => 'required|max:255',
-            'password'   => 'required|confirmed|min:5'
-        ]);
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
         try {
@@ -88,19 +83,13 @@ class UserController extends Controller
     /**
      * Update User.
      *
-     * @param Request $request
+     * @param UserRequest $request
      * @param  User  $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $this->validate($request, [
-            'username' 	 => 'required|string',
-            'first_name' => 'required|max:255',
-            'last_name'  => 'required|max:255',
-            'password'   => 'required|confirmed|min:5'
-        ]);
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
         try {

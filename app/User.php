@@ -55,7 +55,7 @@ class User extends Authenticatable
      */
     public function categories()
     {
-        return $this->hasMany('App\article_category');
+        return $this->hasMany('App\Category', 'updated_user_id');
     }
 
     /**

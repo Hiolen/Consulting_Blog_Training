@@ -46,19 +46,13 @@ class Article extends Model
     }
 
     /**
-     * The attributes that should be mutated to dates.
+     * Set the user's slug.
      *
-     * @param file
-     *
-     * @var image name
+     * @param  string  $value
+     * @return void
      */
-    public function storeFile($file)
+    public function setSlugAttribute($value)
     {
-        $name = $file->getClientoriginalName();
-        $dir = 'article/';
-        $filename = $name;
-        $file->move($dir, $filename);
-
-        return $filename;
+        $this->attributes['slug'] = str_slug($value, '-');;
     }
 }

@@ -28,7 +28,7 @@
                     <table class="table">
                         <tr>
                             <th>Title</th>
-                            <th>Image</th>
+                            <th>Image Path</th>
                             <th>Category</th>
                             <th>Author</th>
                             <th>Date Created</th>
@@ -37,8 +37,9 @@
                         @foreach($articles as $article)
                             <tr>
                                 <td>{{ $article->title }}</td>
-                                <td>{{ $article->title }}</td>
-                                <td>{{ $article->title }}</td>
+                                <td>{{ $article->image_path }}</td>
+                                <td>{{ $article->category->name }}</td>
+                                <td>{{ $article->user->username }}</td>
                                 <td>{{ $article->created_at->toFormattedDateString()}}</td>
                                 <td>
                                     <a href="{{ route('article.edit', ['id' => $article->id]) }}" class="btn btn-info btn-sm">Edit</a>
@@ -53,8 +54,6 @@
             </div><!--/.col-xs-12.col-sm-9-->
 
         </div><!--/row-->
-
-        @include('common.footer')
 
     </div><!--/.container-->
 

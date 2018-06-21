@@ -19,7 +19,7 @@ class CategoryRepository
     }
 
     /**
-     * Get all of the latest users for a given user.
+     * Get all of the latest categories for a given category.
      *
      * @return Collection
      */

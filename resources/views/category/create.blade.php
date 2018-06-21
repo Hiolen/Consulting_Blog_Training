@@ -38,8 +38,6 @@
             </div><!--/.col-xs-12.col-sm-9-->
         </div><!--/row-->
 
-        @include('common.footer')
-
     </div><!--/.container-->
 
 @endsection

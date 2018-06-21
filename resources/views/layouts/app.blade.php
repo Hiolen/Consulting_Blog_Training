@@ -19,11 +19,44 @@
         @include('common.header')
 
         @yield('content')
+
+        @include('common.footer')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
+    {{--CKEditor--}}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
+
+    {{--CKFinder--}}
+    <script src="/ckfinder/ckfinder.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#ckFinder-popUp').on('click', function (e) {
+                e.preventDefault();
+                    CKFinder.popup( {
+                    chooseFiles: true,
+                    onInit: function( finder ) {
+                        finder.on( 'files:choose', function( evt ) {
+                            var file = evt.data.files.first();
+                            document.getElementById( 'image_path' ).value = file.getUrl();
+                            $('#image_path_text').append(file.getUrl());
+                            console.log('hello world!');
+                        } );
+                        finder.on( 'file:choose:resizedImage', function( evt ) {
+                            document.getElementById( 'image_path' ).value = evt.data.resizedUrl;
+                            $('#image_path_text').append(evt.data.resizedUrl);
+                            console.log('hello world!');
+                        } );
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
