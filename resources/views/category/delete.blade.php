@@ -9,16 +9,16 @@
 
             <div class="col-xs-12 col-sm-9">
                 <form id="deleteForm" class="form-horizontal" method="post"
-                      action="@if (isset($user)){{ route('user.destroy', ['id' => $user->id]) }}@endif">
+                      action="@if (isset($category)){{ route('category.destroy', ['id' => $category->id]) }}@endif">
 
                     {{ csrf_field() }}
                     {{method_field('DELETE')}}
-                    <input type="hidden" name="id" value="{{ $user->id }}" />
+                    <input type="hidden" name="id" value="{{ $category->id }}" />
                     <div class="form-group">
                         <div class="controls">
-                            Do you want to delete this username {{ $user->username }}?<br>
+                            Do you want to delete this name {{ $category->name}}?<br>
                             <button type="submit" class="btn btn-sm btn-danger">
-                                Delete User
+                                Delete Category
                             </button>
                             <a href="{{ route('user.index') }}" class="btn btn-warning btn-sm">Cancel</a>
 

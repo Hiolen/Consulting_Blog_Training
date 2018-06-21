@@ -5,7 +5,7 @@
 
         <div class="row row-offcanvas row-offcanvas-right">
 
-            @include('user.partials.sidebar')
+            @include('common.sidebar')
 
             <div class="col-xs-12 col-sm-9">
                 <form method="POST" action="{{ route('user.update', ['id' => $user->id]) }}" aria-label="{{ __('Register') }}">
@@ -98,6 +98,8 @@
                 </form>
             </div><!--/.col-xs-12.col-sm-9-->
         </div><!--/row-->
+
+        @include('common.footer')
 
     </div><!--/.container-->
 
