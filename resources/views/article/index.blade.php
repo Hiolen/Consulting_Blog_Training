@@ -37,7 +37,7 @@
                         @foreach($articles as $article)
                             <tr>
                                 <td>{{ $article->title }}</td>
-                                <td>{{ $article->image_path }}</td>
+                                <td style="width:20%"><img src="{{ $article->image_path }}" alt="" style="width:20%"></td>
                                 <td>{{ $article->category->name }}</td>
                                 <td>{{ $article->user->username }}</td>
                                 <td>{{ $article->created_at->toFormattedDateString()}}</td>

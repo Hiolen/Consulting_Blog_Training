@@ -25,7 +25,7 @@ class CreateArticlesTable extends Migration
             $table->softDeletes();
 
             $table->foreign('updated_user_id')->references('id')->on('users');
-            $table->foreign('article_category_id')->references('id')->on('categories');
+            $table->foreign('article_category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

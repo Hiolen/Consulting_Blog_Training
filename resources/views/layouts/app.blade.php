@@ -44,13 +44,11 @@
                         finder.on( 'files:choose', function( evt ) {
                             var file = evt.data.files.first();
                             document.getElementById( 'image_path' ).value = file.getUrl();
-                            $('#image_path_text').append(file.getUrl());
-                            console.log('hello world!');
+                            $('#image_path_text').attr('src', file.getUrl());
                         } );
                         finder.on( 'file:choose:resizedImage', function( evt ) {
                             document.getElementById( 'image_path' ).value = evt.data.resizedUrl;
-                            $('#image_path_text').append(evt.data.resizedUrl);
-                            console.log('hello world!');
+                            $('#image_path_text').attr('src', evt.data.resizedUrl);
                         } );
                     }
                 });

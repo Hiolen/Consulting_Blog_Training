@@ -58,8 +58,8 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $article = new Article($request->all());
-        $article->slug = $article->title;
+        $article       = new Article($request->all());
+        $article->slug = (!is_null($request->slug)) ? $request->slug : $request->title;
 
         try {
             $article->save();
@@ -96,7 +96,7 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, Article $article)
     {
         $article->fill($request->all());
-        $article->slug = $article->title;
+        $article->slug = (!is_null($request->slug)) ? $request->slug : $request->title;
 
         try {
             $article->save();

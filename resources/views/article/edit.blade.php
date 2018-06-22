@@ -30,6 +30,20 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="slug" class="col-md-2 control-label">{{ __('slug') }}</label>
+
+                        <div class="col-md-10">
+                            <input id="slug" type="text" class="form-control{{ $errors->has('slug') ? ' is-invalid' : '' }}" name="slug" value="{{ old('slug', isset($article) ? $article->slug : null) }}" autofocus>
+
+                            @if ($errors->has('slug'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('slug') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="contents" class="col-md-2 control-label">{{ __('contents') }}</label>
 
                         <div class="col-md-10">
@@ -65,16 +79,9 @@
                         <label for="image" class="col-md-2 control-label">{{ __('image') }}</label>
 
                         <div class="col-md-8">
-                            <input type="text" class="form-control" size="48" name="image_path" id="image_path" value="{{ old('title', isset($article) ? $article->title : null) }}" />
-                            @if ($errors->has('image_path'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image_path') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="col-md-2">
-                            <a href="#" class="btn btn-info" id="ckFinder-popUp">Select file</a>
+                            <input type="hidden" name="image_path" id="image_path" value="{{ old('image_path', isset($article) ? $article->image_path : null) }}" />
+                            <a href="#" class="btn btn-info" id="ckFinder-popUp">Select file</a> &nbsp;&nbsp;
+                            <span><img src="{{ old('image_path', isset($article) ? $article->image_path : null) }}" id="image_path_text" alt="" style="width:20%"></span>
                         </div>
                     </div>
 
