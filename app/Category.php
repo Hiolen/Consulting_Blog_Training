@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Article;
+use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class Category extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, SoftCascadeTrait;
+
+    protected $softCascade = ['articles'];
 
     /**
      * The attributes that are mass assignable.
@@ -19,13 +21,6 @@ class Category extends Model
         'name',
         'updated_user_id'
     ];
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 
     /**
      * Get the user that owns the category.
