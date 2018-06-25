@@ -39,7 +39,7 @@
                                 <td>{{ $category->created_at->toFormattedDateString()}}</td>
                                 <td>
                                     <a href="{{ route('category.edit', ['id' => $category->id]) }}" class="btn btn-info btn-sm">Edit</a>
-                                    <a href="{{ route('categoryDelete', ['id' => $category->id]) }}" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="{{ route('categoryDelete', ['id' => $category->id]) }}" class="btn btn-danger btn-sm {{ ($category->articles->count()) ? 'disabled' : ' ' }}">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -50,8 +50,6 @@
             </div><!--/.col-xs-12.col-sm-9-->
 
         </div><!--/row-->
-
-        @include('common.footer')
 
     </div><!--/.container-->
 

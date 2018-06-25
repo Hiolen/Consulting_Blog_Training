@@ -45,16 +45,13 @@ class CategoryTest extends TestCase
     public function testUpdateData()
     {
         $name            = 'test';
-        $updated_user_id = 1;
 
         $this->login()
-            ->visit('user/1/edit')
-            ->type($name, 'username')
-            ->type($updated_user_id, 'first_name')
-            ->press('Edit User')
+            ->visit('category/1/edit')
+            ->type($name, 'name')
+            ->press('Edit Category')
             ->seeInDatabase('categories', [
                 'name'  => $name,
-                'updated_user_id' => $updated_user_id,
             ]);
 
     }

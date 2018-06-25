@@ -57,4 +57,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Category', 'updated_user_id');
     }
+
+    /**
+     * Get the articles for the user.
+     */
+    public function articles()
+    {
+        return $this->hasMany('App\Article', 'updated_user_id');
+    }
 }
