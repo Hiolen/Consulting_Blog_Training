@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Article;
 
 class Category extends Model
 {
@@ -39,6 +40,6 @@ class Category extends Model
      */
     public function articles()
     {
-        return $this->hasMany('App\Articles', 'article_category_id');
+        return $this->hasMany('App\Article', 'article_category_id');
     }
 }

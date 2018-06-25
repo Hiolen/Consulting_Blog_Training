@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('article_category_id');
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->text('contents');
             $table->string('image_path');
             $table->unsignedInteger('updated_user_id');

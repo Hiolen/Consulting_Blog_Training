@@ -45,15 +45,4 @@ class Article extends Model
     {
         return $this->belongsTo('App\Category', 'article_category_id');
     }
-
-    /**
-     * Set the user's slug.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = str_slug($value, '-');;
-    }
 }
